@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="673b2890-ce0f-4cd8-9976-f71edbfa7ef2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/monitoring/configmap.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monitoring/cronjob.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monitoring/postgres-master.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monitoring/postgres-slave-service.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monitoring/postgres-slave.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monitoring/secret.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monitoring/statefulset.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monitoring/web-server.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kaas-api-0.1.0.tgz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kaas-api/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/kaas-api/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/self-service-api/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/self-service-api/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,27 +34,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "FastAPI.cloud.executor": "Run",
-    "HTTP Request.test_main | #1.executor": "Run",
-    "HTTP Request.test_main | #2.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.web-server.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Joma",
-    "last_opened_file_path": "C:/Users/Asus-Joma/PycharmProjects/cloud-project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;FastAPI.cloud.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | #1.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.test_main | #2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.web-server.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Joma&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Asus-Joma/PycharmProjects/cloud-project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager">
+}</component>
+  <component name="RunManager" selected="FastAPI.cloud">
     <configuration name="test_main | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/test_main.http" requestIdentifier="#1" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -137,7 +126,7 @@
       <workItem from="1718021997221" duration="9512000" />
       <workItem from="1718048395780" duration="7358000" />
       <workItem from="1719748335853" duration="2057000" />
-      <workItem from="1720013419626" duration="18075000" />
+      <workItem from="1720013419626" duration="18740000" />
     </task>
     <servers />
   </component>
@@ -159,6 +148,6 @@
     <SUITE FILE_PATH="coverage/cloud_project$cloud.coverage" NAME="cloud Coverage Results" MODIFIED="1720022649250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/cloud$cloud.coverage" NAME="cloud Coverage Results" MODIFIED="1718055280584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/cloud_project$main.coverage" NAME="main Coverage Results" MODIFIED="1720034303254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/self-service-api" />
-    <SUITE FILE_PATH="coverage/cloud_project$web_server.coverage" NAME="web-server Coverage Results" MODIFIED="1720025821032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/monitoring" />
+    <SUITE FILE_PATH="coverage/cloud_project$web_server.coverage" NAME="web-server Coverage Results" MODIFIED="1720037402090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/monitoring" />
   </component>
 </project>
