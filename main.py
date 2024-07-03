@@ -23,7 +23,8 @@ async def create(conf: AppConfig):
             KubernetesClient.create_secret(conf)
         if conf.Ingress is not None:
             KubernetesClient.create_ingress(conf)
-
+        KubernetesClient.create_deployment(conf)
+        KubernetesClient.create_hpa(conf)
         return {"Message": f"Deployment {conf.AppName} successfully created!"}
     except ApiException:
         return {"message": "Could not create deployment"}
