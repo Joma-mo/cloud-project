@@ -1,0 +1,43 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: health-check
+spec:
+  schedule: "*/1 * * * *"  # Every minute
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: health-check
+            image: appropriate/curl:latest
+            command:
+            - /bin/sh
+            - -c
+            - |
+              while true; do
+                for url in $(kubectl get pods -l monitor=true -o jsonpath='{range .items[*]}{.status.podIP}{" "}{end}'); do
+                  status=$(curl -s -o /dev/null -w "%{http_code}" http://$url:8080/healthz)
+                  timestamp=$(date +%Y-%m-%dT%H:%M:%S)
+                  if [ "$status" -eq 200 ]; then
+                    kubectl exec -i $(kubectl get pods -l app=master -o jsonpath='{.items[0].metadata.name}') -- psql -U postgres -d mydatabase -c "INSERT INTO health_status (app_name, success_count, last_success) VALUES ('$url', 1, '$timestamp') ON CONFLICT (app_name) DO UPDATE SET success_count = health_status.success_count + 1, last_success = '$timestamp';"
+                  else
+                    kubectl exec -i $(kubectl get pods -l app=master -o jsonpath='{.items[0].metadata.name}') -- psql -U postgres -d mydatabase -c "INSERT INTO health_status (app_name, failure_count, last_failure) VALUES ('$url', 1, '$timestamp') ON CONFLICT (app_name) DO UPDATE SET failure_count = health_status.failure_count + 1, last_failure = '$timestamp';"
+                  fi
+                done
+                sleep $(kubectl get configmap health-check-config -o jsonpath='{.data.interval}')
+              done
+            env:
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: health-check-config
+                  key: postgres-host
+            resources:
+              requests:
+                memory: "64Mi"
+                cpu: "100m"
+              limits:
+                memory: "128Mi"
+                cpu: "200m"
+          restartPolicy: OnFailure
