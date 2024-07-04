@@ -1,8 +1,6 @@
 import logging
-from typing import List, Dict
-
 from kubernetes import client, config
-from kubernetes.client import ApiException
+from kubernetes.client import ApiException, V1HorizontalPodAutoscalerSpec, V1HorizontalPodAutoscaler, V1ObjectMeta
 from model import AppConfig
 
 
@@ -64,6 +62,7 @@ class KubernetesClient:
                         namespace="default",
                         body=deployment
                     )
+                    print("didididid")
                     logging.info(f"Deployment {conf.AppName} created successfully.")
                 except ApiException as e:
                     logging.error(f"Exception when creating deployment: {e}")
@@ -268,3 +267,39 @@ class KubernetesClient:
         except ApiException as e:
             print(f"Exception when getting all deployments status: {e}")
             raise e
+
+    @staticmethod
+    def create_hpa(conf: AppConfig):
+        config.load_kube_config()
+
+        # Set default HPA values
+        min_replicas = 1
+        max_replicas = 10
+        cpu_utilization = 80  # Target average CPU utilization percentage
+
+        hpa_spec = V1HorizontalPodAutoscalerSpec(
+            scale_target_ref=client.V1CrossVersionObjectReference(
+                api_version="apps/v1",
+                kind="Deployment",
+                name=conf.AppName,
+            ),
+            min_replicas=min_replicas,
+            max_replicas=max_replicas,
+            target_cpu_utilization_percentage=cpu_utilization
+        )
+
+        hpa = V1HorizontalPodAutoscaler(
+            api_version="autoscaling/v1",
+            kind="HorizontalPodAutoscaler",
+            metadata=V1ObjectMeta(name=f"{conf.AppName}-hpa"),
+            spec=hpa_spec,
+        )
+
+        api_instance = client.AutoscalingV1Api()
+        try:
+            api_instance.create_namespaced_horizontal_pod_autoscaler(namespace="default", body=hpa)
+            logging.info(f"HorizontalPodAutoscaler {conf.AppName}-hpa created successfully.")
+        except ApiException as e:
+            logging.error(f"Exception when creating HorizontalPodAutoscaler: {e}")
+            raise e
+

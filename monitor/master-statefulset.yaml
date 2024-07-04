@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: postgres-master
+  namespace: default
 spec:
-  serviceName: "postgres-master"
+  serviceName: "postgres-master-service"
   replicas: 1
   selector:
     matchLabels:
@@ -18,23 +19,24 @@ spec:
         image: bitnami/postgresql:latest
         env:
         - name: POSTGRESQL_REPLICATION_MODE
-          value: master
-        - name: POSTGRESQL_USERNAME
-          value: postgres
-        - name: POSTGRESQL_PASSWORD
+          value: "master"
+        - name: POSTGRESQL_REPLICATION_USER
           valueFrom:
             secretKeyRef:
               name: postgres-secret
-              key: password
-        - name: POSTGRESQL_DATABASE
-          value: mydatabase
-        - name: POSTGRESQL_REPLICATION_USER
-          value: replicator
+              key: postgres-user
         - name: POSTGRESQL_REPLICATION_PASSWORD
           valueFrom:
             secretKeyRef:
               name: postgres-secret
-              key: replication-password
+              key: postgres-password
+        - name: POSTGRESQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: postgres-password
+        - name: POSTGRESQL_DATABASE
+          value: "mydatabase"
         volumeMounts:
         - name: pgdata
           mountPath: /bitnami/postgresql

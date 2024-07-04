@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: default
+data:
+  postgresql.conf: |
+    shared_buffers = 128MB
+    max_connections = 100
+  master-host: "postgres-master-service"
+  slave-host: "postgres-slave-service"
